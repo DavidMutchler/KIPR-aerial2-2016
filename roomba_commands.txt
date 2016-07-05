@@ -1,0 +1,40 @@
+Reset 7
+Start 128
+Baud 129 baud-code
+Control 130
+Safe 131
+Full 132
+Power 133
+Spot 134
+Cover 135
+Demo 136 demo-number
+Drive 137 velocity-high velocity-low radius-high radius-low
+LowSideDrivers 138 motors-state
+Leds 139 leds-state power-color powerintensity
+Song 140 song-num song-length
+Play 141 song-num
+Sensors 142 packet
+Query 142 packet
+Force_Seeking_Dock 143
+Pwm_LowSideDrivers 144 main-brushpwm side-brushpwm vacuum-pwm
+Drive_Direct 145 rightvelocity-high rightvelocity-low left-velocityhigh left-velocitylow
+Drive_Pwm 146 right-pwmhigh right-pwmlow left-pwmhigh left-pwm-low
+DigitialOutputs 147 Output-bits
+Stream 148 num-packets
+Query_List 149 num-packets
+PauseResume_Stream 150 stream-state
+SendIR 151 byte
+Script 152 length
+PlayScript 153
+ShowScript 154
+WaitTime 155 seconds_in_tenths
+WaitDistance 156 millimeters
+WaitAngle 157 degrees
+WaitEvent 158 event-id
+Scheduling_Leds 162 weekdays schedulingleds-state
+Digit_Leds_Raw 163 digit-3 digit-2 digit-1 digit-0
+Digit_Leds_Ascii 164 digit-3 digit-2 digit-1 digit-0
+Buttons 165 buttons
+Schedule_NOT_IMPLEMENTED 167 days sun-hour sun-min mon-hour Etc.
+Set_Day_Time 168 day hour minute
+Stop 173
