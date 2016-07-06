@@ -31,6 +31,15 @@ class Bebop(object):
         self.client.connect(('localhost', self.port))
 
 
+    def move_all(self, pitch, roll, yaw, gaz):
+        '''
+        Moves the drone by setting the 4 parameters.
+        Each must be an integer in the range [-100, 100].
+        '''
+        self._send_string('move' + ' ' + str(pitch) + ' ' + \
+            str(roll) + ' ' + str(yaw) + ' ' + str(gaz))
+
+
     def move(self, direction, speed):
         '''
         Moves the drone in a given direction at a given speed (0-100)
@@ -85,8 +94,9 @@ class Bebop(object):
 
     def land(self):
         '''
-        Lands the drone
+        Stops and then lands the drone.
         '''
+        self._send_string('stop')
         self._send_string('land')
 
 
@@ -98,6 +108,7 @@ class Bebop(object):
 
 
     def takeoff(self):
+        #self._send_string('stop')
         self._send_string('takeoff')
         time.sleep(3)
 
