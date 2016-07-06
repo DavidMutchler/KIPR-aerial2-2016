@@ -11,17 +11,17 @@ import create
 class Robot(object):
     def __init__(self):
         self.arduino = arduino.Arduino()
-        self.create = create.Create(self.arduino)
-        self.bebop = bebop.Bebop(8080, True)
-        self.logger = pid_pixy.Logger()
+#         self.create = create.Create(self.arduino)
+#         self.bebop = bebop.Bebop(8080, True)
+#         self.logger = pid_pixy.Logger()
 
 def main():
     robot = Robot()
     initialize(robot)
-    wait_for_lights(robot.arduino)
+#     wait_for_lights(robot.arduino)
     # CONSIDER: Do a shutdown-in?
 
-    start(robot)
+#     start(robot)
 
 def start(robot):
 
@@ -56,10 +56,10 @@ def initialize(robot):
         print 'Exiting!'
         exit()
 
-    initialize_pixy()
-    # needs some way to test if the pixy succeeded
-    initialize_create(robot.create)
-    initialize_bebop(robot.bebop)
+#     initialize_pixy()
+#     # needs some way to test if the pixy succeeded
+#     initialize_create(robot.create)
+#     initialize_bebop(robot.bebop)
 
     # TODO: Confirm connections are OK.
 

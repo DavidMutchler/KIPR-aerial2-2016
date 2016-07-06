@@ -10,6 +10,7 @@ class Arduino(object):
     TEST_RECEIVE_SIGNAL = 4  # Not used by Create
 
     RECEIVED_LIGHTS_ON = 1
+    SEND_CREATE_COMMAND = 2
 
 
     def __init__(self, connect_now=True, debug=True):
@@ -42,5 +43,5 @@ class Arduino(object):
         return byte
 
     def test_communication(self):
-        self.send_byte(Arduino.TEST_SNED_SIGNAL)
+        self.send_byte(Arduino.TEST_SEND_SIGNAL)
         return self.receive_byte(1.0) == Arduino.TEST_RECEIVE_SIGNAL
