@@ -7,7 +7,7 @@ class Arduino(object):
     SLEEP_AFTER_CONNECTING = 2.0  # seconds
 
     TEST_SEND_SIGNAL = 3  # Not used by Create
-    TEST_RECEIVE_SIGNAL = 4  # Not used by Create
+    TEST_RECEIVE_SIGNAL = chr(4)  # Not used by Create
 
     RECEIVED_LIGHTS_ON = 1
     SEND_CREATE_COMMAND = 2
@@ -21,7 +21,7 @@ class Arduino(object):
     def connect(self):
         self.serial_connection = serial.Serial(Arduino.DEV,
                                                Arduino.BAUD_RATE)
-        self.sleep(Arduino.SLEEP_AFTER_CONNECTING)
+        time.sleep(Arduino.SLEEP_AFTER_CONNECTING)
 
     def send_byte(self, byte):
         if self.debug:
@@ -31,7 +31,7 @@ class Arduino(object):
     def receive_byte(self, timeout=False):
         start_time = time.time()
         while True:
-            if self.serial_connection.in_waiting() > 0:
+            if self.serial_connection.inWaiting() > 0:
                 byte = self.serial_connection.read(1)
                 break
             if timeout and time.time() - start_time > timeout:
