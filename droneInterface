@@ -63,6 +63,8 @@ process.stdin.on('keypress', function (ch, key) {
         console.log('Stop (directed by user)');
     } else if (key.name == 'r') {
         connect_to_python();
+    } else if (key.name == 'f') {
+        drone.flatTrim();
     }
   }
 });
@@ -85,6 +87,12 @@ net.createServer(function (socket) {
         if (command.length == 2) {
           var arg = parseInt(command[1]);
           drone[function_name](arg);
+        } else if (command.length == 5) {
+          var pitch = parseInt(command[1]);
+          var roll = parseInt(command[2]);
+          var yaw = parseInt(command[3]);
+          var gaz = parseInt(command[4]);
+          drone[function_name](pitch, roll, yaw, gaz);
         } else {
           drone[function_name]();
         }
