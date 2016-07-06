@@ -1,8 +1,10 @@
+import arduino
+
 class Create(object):
 
     COMMANDS = {}
 
-    def __init(self, arduino):
+    def __init__(self, arduino):
         '''
         :type arduino: arduino.Arduino
         '''
@@ -34,7 +36,7 @@ class Create(object):
 
     def run_command(self, command_name, opcode, *args):
         # Send the command's opcode:
-        self.arduino.send_byte(opcode)
+        self.send_byte(opcode)
 
 
         # Drive commands take two 16-bit numbers.  Each number is sent
@@ -48,16 +50,16 @@ class Create(object):
         # take a sequence of data items.
         # For these, we must first send the length of the sequence:
         if command_name in ('query_list', 'stream', 'song'):
-            self.arduino.send_byte(len(args))
+            self.send_byte(len(args))
 
         for arg in args:
             # Songs are special: each data item is a two-tuple.
             # Send each item in the tuple separately.'
             if command_name == 'song':
-                self.arduino.send_byte(arg[0])
-                self.arduino.send_byte(arg[1])
+                self.send_byte(arg[0])
+                self.send_byte(arg[1])
             else:
-                self.arduino.send_byte(arg)
+                self.send_byte(arg)
 
         # The commands:
         #   query (aka sensors)   query_list   stream
@@ -81,3 +83,17 @@ class Create(object):
         high = (two_byte_number & 0xFF00) >> 8
         low = (two_byte_number & 0x00FF)
         return high, low
+
+    def send_byte(self, byte):
+        self.arduino.send_byte(arduino.Arduino.SEND_CREATE_COMMAND)
+        self.arduino.send_byte(byte)
+
+    def send_bytes(self, byte_list):
+        for byte in byte_list:
+            self.send_byte(byte)
+ 
+    def make_a_noise(self):
+        self.send_bytes([140, 0, 2])
+        self.send_bytes([72, 64, 76, 64])
+        self.send_bytes([141, 0])
+
