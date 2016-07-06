@@ -2,11 +2,8 @@
 Created on Jun 17, 2016
 @author: Aaron
 '''
-import bebop
 import time
 import pixy
-import os
-import create_library
 
 class Point(object):
     def __init__(self, x, y):
