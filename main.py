@@ -11,7 +11,7 @@ import create
 class Robot(object):
     def __init__(self):
         self.arduino = arduino.Arduino()
-#         self.create = create.Create(self.arduino)
+        self.create = create.Create(self.arduino)
 #         self.bebop = bebop.Bebop(8080, True)
 #         self.logger = pid_pixy.Logger()
 
